@@ -1,5 +1,6 @@
 {
   "recipes": [{
+    "id": "1",
     "cooking_process": [{
       "description": "Сир (400 г) перекладіть в невелику скляну або пластикову миску. Додайте дрібку солі, одне яйце, 3 ст. л. цукру, і 10 г ванільного цукру. Я не люблю, щоб сирники були занадто солодкими, але ви можете додати трохи більше цукру, наприклад 4 ст. л. Сир для сирників можна використовувати як базарний, так і магазинний. Головне, щоб він був не кислим і сильно вологим. Якщо використовуєте магазинний сир, то беріть сир в м'яких поліетиленових пакетах.",
       "images": ["https://firebasestorage.googleapis.com/v0/b/my-family-recipes.appspot.com/o/syrnyki%2Fsyrnyki-1.jpg?alt=media&token=abf8e990-71a9-4d56-bb8f-a6d0e9872231"]
@@ -15,6 +16,7 @@
     "portions": 4,
     "preview": "https://firebasestorage.googleapis.com/v0/b/my-family-recipes.appspot.com/o/syrnyki%2Fsyrnyki-0.jpg?alt=media&token=4be20953-95ee-4f68-a3b9-55e1cc18c9f4"
   }, {
+    "id": "2",
     "cooking_process": [{
       "description": "Сир (400 г) перекладіть в невелику скляну або пластикову миску. Додайте дрібку солі, одне яйце, 3 ст. л. цукру, і 10 г ванільного цукру. Я не люблю, щоб сирники були занадто солодкими, але ви можете додати трохи більше цукру, наприклад 4 ст. л. Сир для сирників можна використовувати як базарний, так і магазинний. Головне, щоб він був не кислим і сильно вологим. Якщо використовуєте магазинний сир, то беріть сир в м'яких поліетиленових пакетах.",
       "images": ["https://firebasestorage.googleapis.com/v0/b/my-family-recipes.appspot.com/o/syrnyki%2Fsyrnyki-1.jpg?alt=media&token=abf8e990-71a9-4d56-bb8f-a6d0e9872231"]
@@ -30,6 +32,7 @@
     "portions": 4,
     "preview": "https://firebasestorage.googleapis.com/v0/b/my-family-recipes.appspot.com/o/syrnyki%2Fsyrnyki-0.jpg?alt=media&token=4be20953-95ee-4f68-a3b9-55e1cc18c9f4"
   }, {
+    "id": "3",
     "cooking_process": [{
       "description": "Сир (400 г) перекладіть в невелику скляну або пластикову миску. Додайте дрібку солі, одне яйце, 3 ст. л. цукру, і 10 г ванільного цукру. Я не люблю, щоб сирники були занадто солодкими, але ви можете додати трохи більше цукру, наприклад 4 ст. л. Сир для сирників можна використовувати як базарний, так і магазинний. Головне, щоб він був не кислим і сильно вологим. Якщо використовуєте магазинний сир, то беріть сир в м'яких поліетиленових пакетах.",
       "images": ["https://firebasestorage.googleapis.com/v0/b/my-family-recipes.appspot.com/o/syrnyki%2Fsyrnyki-1.jpg?alt=media&token=abf8e990-71a9-4d56-bb8f-a6d0e9872231"]

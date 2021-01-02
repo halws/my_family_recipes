@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import './providers/recipes.dart';
 import './screens/recipes_screen.dart';
+import './screens/recipe_detail_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -19,7 +20,12 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        home: RecipesScreen(),
+        // home: RecipesScreen(),
+        initialRoute: '/',
+        routes: {
+          '/': (_) => RecipesScreen(),
+          RecipeDetailScreen.routeName: (_) => RecipeDetailScreen()
+        },
       ),
     );
   }
