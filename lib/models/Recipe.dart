@@ -44,6 +44,7 @@ class Recipe {
   final String name;
   final String description;
   final int portions;
+  final int cookingTime;
   final String preview;
 
   final List<CookingProcess> cookingProcesses;
@@ -54,6 +55,7 @@ class Recipe {
     @required this.name,
     @required this.description,
     @required this.portions,
+    @required this.cookingTime,
     @required this.preview,
     @required this.cookingProcesses,
     @required this.ingredients,
@@ -76,6 +78,7 @@ class Recipe {
       name: json['name'],
       description: json['description'],
       portions: json['portions'],
+      cookingTime: json['cooking_time'],
       preview: json['preview'],
       cookingProcesses: cookingProcessesList,
       ingredients: ingredientsList,

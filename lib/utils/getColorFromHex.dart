@@ -1,16 +1,6 @@
 import 'package:flutter/material.dart';
 
 class ColorUtils {
-  // Color _getColorFromHex(String hexColor) {
-  //   hexColor = hexColor.replaceAll("#", "");
-  //   if (hexColor.length == 6) {
-  //     hexColor = "FF" + hexColor;
-  //   }
-  //   if (hexColor.length == 8) {
-  //     return Color(int.parse("0x$hexColor"));
-  //   }
-  // }
-
   ///
   /// Converts the given [hex] color string to the corresponding olor.
   ///
@@ -22,5 +12,25 @@ class ColorUtils {
     final hexValue = int.parse(hexDigits, radix: 16);
     assert(hexValue >= 0 && hexValue <= 0xFFFFFFFF);
     return Color(hexValue | hexMask);
+  }
+
+  static MaterialColor createMaterialColor(Color color) {
+    List strengths = <double>[.05];
+    Map swatch = <int, Color>{};
+    final int r = color.red, g = color.green, b = color.blue;
+
+    for (int i = 1; i < 10; i++) {
+      strengths.add(0.1 * i);
+    }
+    strengths.forEach((strength) {
+      final double ds = 0.5 - strength;
+      swatch[(strength * 1000).round()] = Color.fromRGBO(
+        r + ((ds < 0 ? r : (255 - r)) * ds).round(),
+        g + ((ds < 0 ? g : (255 - g)) * ds).round(),
+        b + ((ds < 0 ? b : (255 - b)) * ds).round(),
+        1,
+      );
+    });
+    return MaterialColor(color.value, swatch);
   }
 }
