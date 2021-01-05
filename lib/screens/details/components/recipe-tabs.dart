@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:lipsum/lipsum.dart' as lipsum;
 import 'package:my_family_recipes/models/Recipe.dart';
 import 'package:tab_indicator_styler/tab_indicator_styler.dart';
 
@@ -37,33 +36,89 @@ class RecipeTabs extends StatelessWidget {
                   Tab(text: 'Приготування'),
                 ],
               ),
-              SizedBox(
+              Container(
                 height: MediaQuery.of(context).size.height * 0.7,
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: ColorUtils.hexToColor('#F3F5F9'),
-                  ),
-                  child: TabBarView(children: <Widget>[
-                    SingleChildScrollView(
-                      child: Container(
-                        padding: const EdgeInsets.all(20),
-                        child: Text(
-                            lipsum.createText(
-                                numParagraphs: 10, numSentences: 5),
-                            style: Theme.of(context).textTheme.bodyText1),
-                      ),
-                    ),
-                    Container(
-                      child: Center(
-                        child: Text('Display Tab 2',
-                            style: TextStyle(
-                                fontSize: 22, fontWeight: FontWeight.bold)),
-                      ),
-                    ),
-                  ]),
+                decoration: BoxDecoration(
+                  color: ColorUtils.hexToColor('#F3F5F9'),
                 ),
+                child: TabBarView(children: <Widget>[
+                  TabIngredients(ingredients: ingredients),
+                  Container(
+                    padding: const EdgeInsets.all(20),
+                    child: ListView.separated(
+                      padding: const EdgeInsets.all(8),
+                      itemCount: cookingProcesses.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Column(
+                          children: [
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: Image.network(
+                                cookingProcesses[index].images[0],
+                                height: 200,
+                                width: double.infinity,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                            Container(
+                              padding: const EdgeInsets.only(top: 10),
+                              child: Text(cookingProcesses[index].description,
+                                  style: Theme.of(context).textTheme.bodyText1),
+                            )
+                          ],
+                        );
+                      },
+                      separatorBuilder: (BuildContext context, int index) =>
+                          const Divider(
+                        height: 36,
+                        thickness: 1,
+                      ),
+                    ),
+                  ),
+                ]),
               ),
             ]),
+      ),
+    );
+  }
+}
+
+class TabIngredients extends StatelessWidget {
+  const TabIngredients({
+    Key key,
+    @required this.ingredients,
+  }) : super(key: key);
+
+  final List<Ingredient> ingredients;
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Container(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          children: ingredients
+              .map((ingredient) => Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 5),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.fiber_manual_record,
+                          size: 8,
+                          color: ColorUtils.hexToColor('#678694'),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8.0),
+                          child: Text(
+                              '${ingredient.name} ${ingredient.quantity} ${ingredient.unit}',
+                              style: Theme.of(context).textTheme.bodyText1),
+                        )
+                      ],
+                    ),
+                  ))
+              .toList(),
+        ),
       ),
     );
   }
