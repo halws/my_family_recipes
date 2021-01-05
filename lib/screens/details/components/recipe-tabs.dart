@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_family_recipes/models/Recipe.dart';
 import 'package:tab_indicator_styler/tab_indicator_styler.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 import 'package:my_family_recipes/utils/getColorFromHex.dart';
 
@@ -51,14 +52,35 @@ class RecipeTabs extends StatelessWidget {
                       itemBuilder: (BuildContext context, int index) {
                         return Column(
                           children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(10),
-                              child: Image.network(
-                                cookingProcesses[index].images[0],
-                                height: 200,
-                                width: double.infinity,
-                                fit: BoxFit.cover,
+                            CarouselSlider(
+                              options: CarouselOptions(
+                                height: 200.0,
+                                enableInfiniteScroll: false,
+                                viewportFraction: .95,
                               ),
+                              items: cookingProcesses[index].images.map((i) {
+                                return Builder(
+                                  builder: (BuildContext context) {
+                                    return Container(
+                                      margin: cookingProcesses[index]
+                                                  .images
+                                                  .length >
+                                              0
+                                          ? EdgeInsets.only(right: 5.0)
+                                          : EdgeInsets.all(0),
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(10),
+                                        child: Image.network(
+                                          cookingProcesses[index].images[0],
+                                          height: 200,
+                                          width: double.infinity,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                );
+                              }).toList(),
                             ),
                             Container(
                               padding: const EdgeInsets.only(top: 10),

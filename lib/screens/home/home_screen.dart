@@ -35,6 +35,6 @@ class _HomeScreenState extends State<HomeScreen> {
           preferredSize: Size(double.infinity, 110),
           child: Appbar(),
         ),
-        body: Body(items));
+        body: SafeArea(child: Body(items)));
   }
 }

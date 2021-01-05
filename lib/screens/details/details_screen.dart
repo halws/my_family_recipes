@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:my_family_recipes/screens/details/components/appbar.dart';
 import 'package:my_family_recipes/screens/details/components/body-list.dart';
 import 'package:my_family_recipes/screens/details/components/body.dart';
-import 'package:tab_indicator_styler/tab_indicator_styler.dart';
 import 'package:provider/provider.dart';
 
-import 'package:my_family_recipes/utils/getColorFromHex.dart';
 import '../../models/Recipe.dart';
 import '../../providers/recipes.dart';
 
@@ -26,14 +24,16 @@ class _DetailsScreenState extends State<DetailsScreen> {
 
     return Scaffold(
         backgroundColor: Colors.white,
-        body: Container(
-          child: DefaultTabController(
-            length: 3, // leng
-            child: new CustomScrollView(slivers: [
-              Appbar(recipe: recipe),
-              BodyRoundedHead(),
-              BodyList(recipe),
-            ]),
+        body: SafeArea(
+          child: Container(
+            child: DefaultTabController(
+              length: 3, // leng
+              child: new CustomScrollView(slivers: [
+                Appbar(recipe: recipe),
+                BodyRoundedHead(),
+                BodyList(recipe),
+              ]),
+            ),
           ),
         ));
   }
