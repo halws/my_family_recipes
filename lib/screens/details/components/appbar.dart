@@ -1,17 +1,57 @@
 import 'package:flutter/material.dart';
+import 'package:my_family_recipes/models/Basket-recipe.dart';
 import 'package:my_family_recipes/models/Recipe.dart';
+import 'package:my_family_recipes/providers/basket.dart';
 import 'package:my_family_recipes/widgets/recipe-detail-screen-decorated-icon.dart';
+import 'package:provider/provider.dart';
 
 class Appbar extends StatelessWidget {
   const Appbar({
     Key key,
     @required this.recipe,
+    @required this.portions,
+    @required this.resetPortions,
   }) : super(key: key);
 
   final Recipe recipe;
+  final int portions;
+  final Function resetPortions;
 
   @override
   Widget build(BuildContext context) {
+    final cardProvider = Provider.of<Basket>(context, listen: false);
+
+    void _addToBasket() {
+      List<SubIngredient> subIngredients = recipe.ingredients
+          .map((e) => SubIngredient(e.name, e.category, e.quantity, e.unit))
+          .toList();
+
+      final result = cardProvider.addItem(BasketItem(
+        id: recipe.id,
+        name: recipe.name,
+        portions: portions,
+        ingredients: subIngredients,
+      ));
+
+      if (result) {
+        final snackBar = SnackBar(
+          content: Text('Рецепт додано до кошика!'),
+          // action: SnackBarAction(
+          //   label: 'Відмінити',
+          //   onPressed: () {
+          //     // Some code to undo the change.
+          //   },
+          // ),
+        );
+
+        resetPortions();
+        Scaffold.of(context).showSnackBar(snackBar);
+      } else {
+        // TODO доробити дію коли вже такий елемент є в кошику
+        print('implement if already exist');
+      }
+    }
+
     return SliverAppBar(
       leading: IconButton(
         icon: GetDecoratedIcon(icon: Icons.keyboard_arrow_left),
@@ -21,7 +61,7 @@ class Appbar extends StatelessWidget {
       elevation: 0,
       actions: <Widget>[
         IconButton(
-          onPressed: () {},
+          onPressed: () => _addToBasket(),
           icon: GetDecoratedIcon(icon: Icons.add_shopping_cart),
         ),
       ],

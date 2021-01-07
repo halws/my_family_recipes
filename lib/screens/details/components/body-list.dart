@@ -6,8 +6,14 @@ import 'package:my_family_recipes/models/Recipe.dart';
 
 class BodyList extends StatelessWidget {
   final Recipe recipe;
+  final Function updatePortions;
+  final int portions;
 
-  BodyList(this.recipe);
+  BodyList({
+    @required this.recipe,
+    @required this.updatePortions,
+    @required this.portions,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +22,7 @@ class BodyList extends StatelessWidget {
         Container(
           child: Column(
             children: [
-              RecipeHead(recipe),
+              RecipeHead(recipe, portions, updatePortions),
               const SizedBox(height: 15),
               RecipeTabs(recipe.ingredients, recipe.cookingProcesses),
             ],

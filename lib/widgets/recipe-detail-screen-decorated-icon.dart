@@ -2,15 +2,17 @@ import 'package:decorated_icon/decorated_icon.dart';
 import 'package:flutter/material.dart';
 
 class GetDecoratedIcon extends StatelessWidget {
-  const GetDecoratedIcon({Key key, @required this.icon}) : super(key: key);
-
+  const GetDecoratedIcon(
+      {Key key, @required this.icon, this.color = Colors.white})
+      : super(key: key);
+  final Color color;
   final IconData icon;
 
   @override
   Widget build(BuildContext context) {
     return DecoratedIcon(
       icon,
-      color: Colors.white,
+      color: color,
       size: 26.0,
       shadows: [
         BoxShadow(

@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:my_family_recipes/screens/basket/basket_screen.dart';
 import 'package:provider/provider.dart';
 
 import 'package:my_family_recipes/utils/getColorFromHex.dart';
+
 import 'package:my_family_recipes/providers/recipes.dart';
+import 'package:my_family_recipes/providers/basket.dart';
+
 import 'package:my_family_recipes/screens/home/home_screen.dart';
 import 'package:my_family_recipes/screens/details/details_screen.dart';
 
@@ -17,8 +21,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle.light,
-      child: ChangeNotifierProvider(
-        create: (context) => Recipes(),
+      child: MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (context) => Recipes()),
+          ChangeNotifierProvider(create: (context) => Basket())
+        ],
         child: MaterialApp(
           theme: ThemeData(
             scaffoldBackgroundColor: Colors.white,
@@ -45,7 +52,8 @@ class MyApp extends StatelessWidget {
           initialRoute: '/',
           routes: {
             '/': (_) => HomeScreen(),
-            DetailsScreen.routeName: (_) => DetailsScreen()
+            DetailsScreen.routeName: (_) => DetailsScreen(),
+            BasketScreen.routeName: (_) => BasketScreen(),
           },
         ),
       ),

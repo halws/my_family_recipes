@@ -5,8 +5,9 @@ import 'package:my_family_recipes/utils/getTime.dart';
 
 class RecipeHead extends StatelessWidget {
   final Recipe recipe;
-
-  RecipeHead(this.recipe);
+  final int portions;
+  final Function updatePortions;
+  RecipeHead(this.recipe, this.portions, this.updatePortions);
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +53,7 @@ class RecipeHead extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    'Порцій: ${recipe.portions}',
+                    'Порцій: $portions',
                     style: Theme.of(context).textTheme.bodyText1,
                   ),
                 ],
@@ -72,7 +73,7 @@ class RecipeHead extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () => updatePortions(portions + recipe.portions),
                     icon: Icon(
                       Icons.add,
                       size: 20,
@@ -88,7 +89,7 @@ class RecipeHead extends StatelessWidget {
                     ),
                   ),
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () => updatePortions(portions - recipe.portions),
                     icon: Icon(
                       Icons.remove,
                       size: 20,
