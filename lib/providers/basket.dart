@@ -29,21 +29,16 @@ class Basket with ChangeNotifier {
     notifyListeners();
   }
 
-  SubIngredient _getSpecificItemsIngredient(String id, String name) {
+  SubIngredient getSpecificItemsIngredient(String id, String name) {
     return _items
         .firstWhere((element) => element.id == id)
         .ingredients
         .firstWhere((element) => element.name == name);
   }
 
-  void checkSpecificItemsIngredient(String id, String name) {
-    _getSpecificItemsIngredient(id, name).setChecked();
-
-    notifyListeners();
-  }
-
-  void uncheckSpecificItemsIngredient(String id, String name) {
-    _getSpecificItemsIngredient(id, name).setUnchacked();
+  void setSpecificItemsIngredientCheckbox(
+      SubIngredient ingredient, bool value) {
+    ingredient.setCheckboxValue(value);
 
     notifyListeners();
   }

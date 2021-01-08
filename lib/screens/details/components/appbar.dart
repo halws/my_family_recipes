@@ -19,17 +19,18 @@ class Appbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cardProvider = Provider.of<Basket>(context, listen: false);
+    final basketProvider = Provider.of<Basket>(context, listen: false);
 
     void _addToBasket() {
       List<SubIngredient> subIngredients = recipe.ingredients
           .map((e) => SubIngredient(e.name, e.category, e.quantity, e.unit))
           .toList();
 
-      final result = cardProvider.addItem(BasketItem(
+      final result = basketProvider.addItem(BasketItem(
         id: recipe.id,
         name: recipe.name,
         portions: portions,
+        initialPortions: portions,
         ingredients: subIngredients,
       ));
 
