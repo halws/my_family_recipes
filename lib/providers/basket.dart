@@ -3,8 +3,10 @@ import 'package:my_family_recipes/models/Basket-recipe.dart';
 
 class Basket with ChangeNotifier {
   List<BasketItem> _items = [];
-
   List<BasketItem> get items => [..._items];
+
+  List<Map> _totalIgredients = [];
+  List<Map> get totalIgredients => [..._totalIgredients];
 
   /// Adds [item] to cart.
   /// Returns true if item was not found in item instead false
@@ -38,6 +40,7 @@ class Basket with ChangeNotifier {
 
   void setSpecificItemsIngredientCheckbox(
       SubIngredient ingredient, bool value) {
+    print(value);
     ingredient.setCheckboxValue(value);
 
     notifyListeners();
@@ -49,4 +52,9 @@ class Basket with ChangeNotifier {
     // This call tells the widgets that are listening to this model to rebuild.
     notifyListeners();
   }
+
+/* ------------------------------ SubIngredients ----------------------------- */
+
+  List<SubIngredient> get _mapAllIngredients =>
+      _items.expand((e) => e.ingredients).toList();
 }
