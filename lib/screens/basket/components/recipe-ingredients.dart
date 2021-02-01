@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:my_family_recipes/models/Basket-recipe.dart';
-import 'package:my_family_recipes/models/Recipe.dart';
 import 'package:my_family_recipes/providers/basket.dart';
 import 'package:my_family_recipes/screens/basket/components/labeled-checkbox.dart';
 import 'package:my_family_recipes/utils/getColorFromHex.dart';
