@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:my_family_recipes/models/Basket-recipe.dart';
 
@@ -5,10 +6,7 @@ class Basket with ChangeNotifier {
   List<BasketItem> _items = [];
   List<BasketItem> get items => [..._items];
 
-  List<Map> _totalIgredients = [];
-  List<Map> get totalIgredients => [..._totalIgredients];
-
-  /// Adds [item] to cart.
+  /// Adds [BasketItem] to cart.
   /// Returns true if item was not found in item instead false
   bool addItem(BasketItem item) {
     // check if item exist in elements
@@ -21,27 +19,11 @@ class Basket with ChangeNotifier {
     _items.add(item);
 
     notifyListeners();
-    print(items);
     return true;
   }
 
-  void changePortionsOnSpecificItem(String id, int portions) {
-    _items.firstWhere((element) => element.id == id).changePortions(portions);
-
-    notifyListeners();
-  }
-
-  SubIngredient getSpecificItemsIngredient(String id, String name) {
-    return _items
-        .firstWhere((element) => element.id == id)
-        .ingredients
-        .firstWhere((element) => element.name == name);
-  }
-
-  void setSpecificItemsIngredientCheckbox(
-      SubIngredient ingredient, bool value) {
-    print(value);
-    ingredient.setCheckboxValue(value);
+  void changePortion(BasketItem item, int portions) {
+    item.changePortions(portions);
 
     notifyListeners();
   }
@@ -55,6 +37,48 @@ class Basket with ChangeNotifier {
 
 /* ------------------------------ SubIngredients ----------------------------- */
 
-  List<SubIngredient> get _mapAllIngredients =>
-      _items.expand((e) => e.ingredients).toList();
+  List<SubIngredient> _totalIgredients = [];
+  List<SubIngredient> get totalIgredients => [..._totalIgredients];
+
+  /// returns all ingredients from all recipes
+  List<SubIngredient> get _fluttenIngredients {
+    return _items.expand((e) => e.ingredients).toList();
+  }
+
+  /// groups all ingredients by name
+  Map<String, List<SubIngredient>> groupIngredients() {
+    final groups = groupBy(_fluttenIngredients, (SubIngredient e) {
+      return e.name;
+    });
+
+    print(groups);
+    return groups;
+  }
+
+  /// calculate all single ingredient's total quantity
+  /// and set _totalIgredients value
+  void generateTotalIngredients() {
+    List<SubIngredient> _newIngredients = [];
+
+    groupIngredients().forEach((key, ingredients) {
+      final totalQuantity =
+          ingredients.map((e) => e.totalQuantity).reduce((a, b) => a + b);
+
+      final name = ingredients[0].name;
+      final category = ingredients[0].category;
+      final unit = ingredients[0].unit;
+
+      _newIngredients.add(SubIngredient(name, category, totalQuantity, unit));
+    });
+
+    _totalIgredients = _newIngredients;
+    notifyListeners();
+  }
+
+  /// Toggle ingredient checkbox
+  void setIngredientCheckbox(SubIngredient ingredient, bool value) {
+    ingredient.setCheckboxValue(value);
+
+    notifyListeners();
+  }
 }
