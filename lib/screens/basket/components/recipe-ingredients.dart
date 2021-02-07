@@ -6,10 +6,11 @@ import 'package:my_family_recipes/providers/basket.dart';
 import 'package:my_family_recipes/screens/basket/components/labeled-checkbox.dart';
 import 'package:my_family_recipes/utils/getColorFromHex.dart';
 
+/// Show list of ingredinets on grey background
 class RecipeIngredients extends StatelessWidget {
-  final BasketItem basketItem;
+  final List<SubIngredient> ingredients;
 
-  RecipeIngredients(this.basketItem);
+  RecipeIngredients(this.ingredients);
 
   @override
   Widget build(BuildContext context) {
@@ -21,17 +22,17 @@ class RecipeIngredients extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: List<Consumer<Basket>>.generate(
-          basketItem.ingredients.length,
+          ingredients.length,
           (index) => Consumer<Basket>(
             builder: (context, basketProvider, child) {
-              final SubIngredient ingredient = basketItem.ingredients[index];
+              final SubIngredient ingredient = ingredients[index];
               return LabeledCheckbox(
                 label:
                     '${ingredient.name} ${ingredient.totalQuantity} ${ingredient.unit}',
-                value: basketItem.ingredients[index].checked,
+                value: ingredients[index].checked,
                 onChanged: (bool newValue) {
-                  basketProvider.setSpecificItemsIngredientCheckbox(
-                      basketItem.ingredients[index], newValue);
+                  basketProvider.setIngredientCheckbox(
+                      ingredients[index], newValue);
                 },
               );
             },

@@ -14,13 +14,10 @@ class SubIngredient extends Ingredient {
           unit: unit,
         );
 
-  void updateTotalQuantity(int portions) {
-    this.totalQuantity = portions * super.quantity;
-  }
+  void _setTotalQuantity(int portions) =>
+      this.totalQuantity = portions * super.quantity;
 
-  void setCheckboxValue(bool value) {
-    checked = value;
-  }
+  void setCheckboxValue(bool value) => checked = value;
 }
 
 class BasketItem {
@@ -40,12 +37,12 @@ class BasketItem {
     this.changePortions(portions);
   }
 
-// change portions and recalculate all ingredients values
+  /// change portions and recalculate all ingredients values
   void changePortions(int portions) {
     this.portions = portions;
 
     ingredients.forEach((SubIngredient ingredient) {
-      ingredient.updateTotalQuantity(this.portions);
+      ingredient._setTotalQuantity(this.portions);
     });
   }
 }
