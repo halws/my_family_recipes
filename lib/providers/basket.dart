@@ -58,7 +58,7 @@ class Basket with ChangeNotifier {
   /// calculate all single ingredient's total quantity
   /// and set _totalIgredients value
   void generateTotalIngredients() {
-    List<SubIngredient> _newIngredients = [];
+    List<SubIngredient> _ingredients = [];
 
     groupIngredients().forEach((key, ingredients) {
       final totalQuantity =
@@ -68,10 +68,18 @@ class Basket with ChangeNotifier {
       final category = ingredients[0].category;
       final unit = ingredients[0].unit;
 
-      _newIngredients.add(SubIngredient(name, category, totalQuantity, unit));
+      final newSubIngredient =
+          SubIngredient(name, category, totalQuantity, unit);
+
+// if all ingredients are checked then set check to true
+      if (!ingredients.map((e) => e.checked).contains(false)) {
+        this.setIngredientCheckbox(newSubIngredient, true);
+      }
+
+      _ingredients.add(newSubIngredient);
     });
 
-    _totalIgredients = _newIngredients;
+    _totalIgredients = _ingredients;
     notifyListeners();
   }
 

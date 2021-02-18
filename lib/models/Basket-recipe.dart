@@ -14,7 +14,7 @@ class SubIngredient extends Ingredient {
           unit: unit,
         );
 
-  void _setTotalQuantity(int portions) =>
+  void setTotalQuantity(int portions) =>
       this.totalQuantity = portions * super.quantity;
 
   void setCheckboxValue(bool value) => checked = value;
@@ -42,7 +42,7 @@ class BasketItem {
     this.portions = portions;
 
     ingredients.forEach((SubIngredient ingredient) {
-      ingredient._setTotalQuantity(this.portions);
+      ingredient.setTotalQuantity(this.portions);
     });
   }
 }
