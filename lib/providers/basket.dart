@@ -42,6 +42,7 @@ class Basket with ChangeNotifier {
 
   /// returns all ingredients from all recipes
   List<SubIngredient> get _fluttenIngredients {
+    print('_fluttenIngredients');
     return _items.expand((e) => e.ingredients).toList();
   }
 
@@ -51,7 +52,7 @@ class Basket with ChangeNotifier {
       return e.name;
     });
 
-    print(groups);
+    print('groupIngredients');
     return groups;
   }
 
@@ -69,18 +70,17 @@ class Basket with ChangeNotifier {
       final unit = ingredients[0].unit;
 
       final newSubIngredient =
-          SubIngredient(name, category, totalQuantity, unit);
+          new SubIngredient(name, category, totalQuantity, unit);
 
 // if all ingredients are checked then set check to true
       if (!ingredients.map((e) => e.checked).contains(false)) {
-        this.setIngredientCheckbox(newSubIngredient, true);
+        newSubIngredient.setCheckboxValue(true);
       }
 
       _ingredients.add(newSubIngredient);
     });
 
     _totalIgredients = _ingredients;
-    notifyListeners();
   }
 
   /// Toggle ingredient checkbox
