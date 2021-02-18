@@ -42,23 +42,27 @@ class Basket with ChangeNotifier {
 
   /// returns all ingredients from all recipes
   List<SubIngredient> get _fluttenIngredients {
-    print('_fluttenIngredients');
+    print('basket.dart: _fluttenIngredients');
     return _items.expand((e) => e.ingredients).toList();
   }
 
   /// groups all ingredients by name
   Map<String, List<SubIngredient>> groupIngredients() {
+    print('basket.dart: group ingredients');
+
     final groups = groupBy(_fluttenIngredients, (SubIngredient e) {
       return e.name;
     });
 
-    print('groupIngredients');
     return groups;
   }
 
   /// calculate all single ingredient's total quantity
   /// and set _totalIgredients value
   void generateTotalIngredients() {
+    print(
+      'basket.dart: generate total ingredients',
+    );
     List<SubIngredient> _ingredients = [];
 
     groupIngredients().forEach((key, ingredients) {
@@ -85,6 +89,7 @@ class Basket with ChangeNotifier {
 
   /// Toggle ingredient checkbox
   void setIngredientCheckbox(SubIngredient ingredient, bool value) {
+    print('basket.dart: set ingredient checkbox');
     ingredient.setCheckboxValue(value);
 
     notifyListeners();

@@ -10,10 +10,16 @@ class IngredientsList extends StatefulWidget {
 }
 
 class _IngredientsListState extends State<IngredientsList> {
+  var _isInit = true;
+
   @override
   void didChangeDependencies() {
-    Provider.of<Basket>(context).generateTotalIngredients();
-    print('didChangeDependencies');
+    print('ingredients-list: run didChangeDependencies ');
+    if (_isInit) {
+      Provider.of<Basket>(context).generateTotalIngredients();
+    }
+
+    _isInit = false;
     super.didChangeDependencies();
   }
 
