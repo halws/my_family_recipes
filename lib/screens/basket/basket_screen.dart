@@ -17,7 +17,7 @@ class BasketScreen extends StatefulWidget {
 }
 
 class _BasketScreenState extends State<BasketScreen> {
-  bool isSwitched = false;
+  bool isSwitched = true;
 
   @override
   Widget build(BuildContext context) {
