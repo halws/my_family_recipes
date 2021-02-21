@@ -42,7 +42,8 @@ class _BasketScreenState extends State<BasketScreen> {
                   ),
                 ),
                 LinkedLabelSwitch(
-                  label: 'Поділ на страви',
+                  label:
+                      isSwitched ? 'Поділ на інгредієнти' : 'Поділ на страви',
                   padding: const EdgeInsets.symmetric(horizontal: 20.0),
                   value: isSwitched,
                   onChanged: (bool newValue) {

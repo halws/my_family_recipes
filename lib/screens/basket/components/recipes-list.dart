@@ -28,6 +28,15 @@ class RecipesList extends StatelessWidget {
     return ListView.builder(
       itemCount: basketProvider.items.length,
       itemBuilder: (BuildContext context, int index) {
+        void toggleCheckbox(int ingredientIndex, bool checked) {
+          print("recipes-list: toggleCheckbox()");
+
+          basketProvider.setIngredientCheckbox(
+            basketProvider.items[index].ingredients[ingredientIndex],
+            checked,
+          );
+        }
+
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 10.0),
           child: Card(
@@ -95,7 +104,10 @@ class RecipesList extends StatelessWidget {
                     ],
                   ),
                 ),
-                RecipeIngredients(basketProvider.items[index].ingredients)
+                RecipeIngredients(
+                  basketProvider.items[index].ingredients,
+                  toggleCheckbox,
+                )
               ],
             ),
           ),

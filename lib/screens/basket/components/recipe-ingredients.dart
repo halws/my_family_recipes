@@ -9,8 +9,9 @@ import 'package:my_family_recipes/utils/getColorFromHex.dart';
 /// Show list of ingredinets on grey background
 class RecipeIngredients extends StatelessWidget {
   final List<SubIngredient> ingredients;
+  final Function toggleCheckbox;
 
-  RecipeIngredients(this.ingredients);
+  RecipeIngredients(this.ingredients, this.toggleCheckbox);
 
   @override
   Widget build(BuildContext context) {
@@ -31,8 +32,7 @@ class RecipeIngredients extends StatelessWidget {
                     '${ingredient.name} ${ingredient.totalQuantity} ${ingredient.unit}',
                 value: ingredients[index].checked,
                 onChanged: (bool newValue) {
-                  basketProvider.setIngredientCheckbox(
-                      ingredients[index], newValue);
+                  toggleCheckbox(index, newValue);
                 },
               );
             },

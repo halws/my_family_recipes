@@ -26,8 +26,24 @@ class _IngredientsListState extends State<IngredientsList> {
   @override
   Widget build(BuildContext context) {
     return Consumer<Basket>(
-      builder: (context, basketProvider, child) =>
-          RecipeIngredients(basketProvider.totalIgredients),
+      builder: (context, basketProvider, child) {
+        void toggleCheckbox(int index, bool checked) {
+          basketProvider.setSingleIngredientCheckbox(
+            basketProvider.totalIgredients[index],
+            checked,
+          );
+
+          basketProvider.toggleIngredientCheckboxForAllRecipes(
+            basketProvider.totalIgredients[index],
+            checked,
+          );
+        }
+
+        return RecipeIngredients(
+          basketProvider.totalIgredients,
+          toggleCheckbox,
+        );
+      },
     );
   }
 }

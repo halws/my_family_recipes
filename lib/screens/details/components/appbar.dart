@@ -23,7 +23,13 @@ class Appbar extends StatelessWidget {
 
     void _addToBasket() {
       List<SubIngredient> subIngredients = recipe.ingredients
-          .map((e) => SubIngredient(e.name, e.category, e.quantity, e.unit))
+          .map((e) => SubIngredient(
+                e.name,
+                e.category,
+                e.quantity,
+                e.unit,
+                parentId: recipe.id,
+              ))
           .toList();
 
       final result = basketProvider.addItem(BasketItem(

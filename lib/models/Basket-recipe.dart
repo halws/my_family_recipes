@@ -4,20 +4,30 @@ import 'package:my_family_recipes/models/Recipe.dart';
 class SubIngredient extends Ingredient {
   bool checked = false;
   int totalQuantity;
+  final String parentId;
 
-  SubIngredient(name, category, quantity, unit, [int portions = 1])
+  SubIngredient(name, category, quantity, unit,
+      {this.parentId, int portions = 1})
       : totalQuantity = portions * quantity,
-        super(
-          name: name,
-          category: category,
-          quantity: quantity,
-          unit: unit,
-        );
+        super(name: name, category: category, quantity: quantity, unit: unit);
 
   void setTotalQuantity(int portions) =>
       this.totalQuantity = portions * super.quantity;
 
   void setCheckboxValue(bool value) => checked = value;
+}
+
+class SingleIngredient extends SubIngredient {
+  final List<String> ids;
+
+  SingleIngredient(
+    name,
+    category,
+    quantity,
+    unit,
+    this.ids, {
+    int portions = 1,
+  }) : super(name, category, quantity, unit, portions: portions);
 }
 
 class BasketItem {
