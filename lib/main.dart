@@ -31,6 +31,11 @@ class MyApp extends StatelessWidget {
             scaffoldBackgroundColor: Colors.white,
             accentColor: ColorUtils.hexToColor('#96ABB5'),
             primaryColor: ColorUtils.hexToColor('#F3F5F9'),
+            textButtonTheme: TextButtonThemeData(
+              style: TextButton.styleFrom(
+                primary: ColorUtils.hexToColor('#96ABB5'),
+              ),
+            ),
             textTheme: TextTheme(
               headline1: TextStyle(
                 fontSize: 18,

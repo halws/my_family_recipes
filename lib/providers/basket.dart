@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:my_family_recipes/models/Basket-recipe.dart';
 
 class Basket with ChangeNotifier {
+  /// TODO write all items to storage
   List<BasketItem> _items = [];
   List<BasketItem> get items => [..._items];
 

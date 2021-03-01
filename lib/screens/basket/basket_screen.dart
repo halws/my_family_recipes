@@ -16,6 +16,34 @@ class BasketScreen extends StatefulWidget {
   _BasketScreenState createState() => _BasketScreenState();
 }
 
+showAlertDialog(BuildContext context) {
+  // set up the buttons
+  Widget cancelButton = TextButton(
+    child: Text("Ні"),
+    onPressed: () => Navigator.pop(context),
+  );
+  Widget continueButton = TextButton(
+    child: Text("Так"),
+    onPressed: () {},
+  );
+  // set up the AlertDialog
+  AlertDialog alert = AlertDialog(
+    title: Text("Вичистити кошик"),
+    content: Text("Чи вичистити кошик і записати в історії покупок?"),
+    actions: [
+      cancelButton,
+      continueButton,
+    ],
+  );
+  // show the dialog
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return alert;
+    },
+  );
+}
+
 class _BasketScreenState extends State<BasketScreen> {
   bool isSwitched = true;
 
@@ -63,8 +91,9 @@ class _BasketScreenState extends State<BasketScreen> {
           )
         ],
       )),
+      // TODO show this button only when there are few elements in the list
       floatingActionButton: FloatingActionButton(
-        onPressed: () => {},
+        onPressed: () => showAlertDialog(context),
         child: Icon(Icons.assignment_turned_in),
         backgroundColor: ColorUtils.hexToColor('#F3F5F9'),
       ),
