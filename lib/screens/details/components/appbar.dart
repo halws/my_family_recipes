@@ -52,7 +52,7 @@ class Appbar extends StatelessWidget {
         );
 
         resetPortions();
-        Scaffold.of(context).showSnackBar(snackBar);
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
       } else {
         // TODO доробити дію коли вже такий елемент є в кошику
         print('implement if already exist');
