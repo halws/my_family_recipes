@@ -15,6 +15,13 @@ class SubIngredient extends Ingredient {
       this.totalQuantity = portions * super.quantity;
 
   void setCheckboxValue(bool value) => checked = value;
+
+  Map toJson() {
+    return {
+      "totalQuantity": totalQuantity,
+      "parentId": parentId,
+    };
+  }
 }
 
 class SingleIngredient extends SubIngredient {
@@ -54,5 +61,18 @@ class BasketItem {
     ingredients.forEach((SubIngredient ingredient) {
       ingredient.setTotalQuantity(this.portions);
     });
+  }
+
+  Map toJson() {
+    List<Map> ingredients = this.ingredients != null
+        ? this.ingredients.map((e) => e.toJson()).toList()
+        : null;
+
+    return {
+      'id': id,
+      'name': name,
+      "portions": portions,
+      "ingredients": ingredients
+    };
   }
 }
