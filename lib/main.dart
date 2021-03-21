@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:my_family_recipes/providers/history.dart';
 import 'package:my_family_recipes/screens/basket/basket_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -24,7 +25,8 @@ class MyApp extends StatelessWidget {
       child: MultiProvider(
         providers: [
           ChangeNotifierProvider(create: (context) => Recipes()),
-          ChangeNotifierProvider(create: (context) => Basket())
+          ChangeNotifierProvider(create: (context) => Basket()),
+          ChangeNotifierProvider(create: (context) => History())
         ],
         child: MaterialApp(
           theme: ThemeData(

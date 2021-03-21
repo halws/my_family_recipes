@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:my_family_recipes/models/Basket-recipe.dart';
-import 'package:my_family_recipes/models/Recipe.dart';
-import 'package:my_family_recipes/providers/basket.dart';
-import 'package:my_family_recipes/widgets/recipe-detail-screen-decorated-icon.dart';
 import 'package:provider/provider.dart';
+import 'package:my_family_recipes/models/Recipe.dart';
+import 'package:my_family_recipes/models/Basket-recipe.dart';
+
+import 'package:my_family_recipes/providers/basket.dart';
+
+import 'package:my_family_recipes/screens/basket/basket_screen.dart';
+
+import 'package:my_family_recipes/widgets/recipe-detail-screen-decorated-icon.dart';
 
 class Appbar extends StatelessWidget {
   const Appbar({
@@ -43,12 +47,11 @@ class Appbar extends StatelessWidget {
       if (result) {
         final snackBar = SnackBar(
           content: Text('Рецепт додано до кошика!'),
-          // action: SnackBarAction(
-          //   label: 'Відмінити',
-          //   onPressed: () {
-          //     // Some code to undo the change.
-          //   },
-          // ),
+          action: SnackBarAction(
+            label: 'до кошика',
+            onPressed: () =>
+                Navigator.of(context).pushNamed(BasketScreen.routeName),
+          ),
         );
 
         resetPortions();

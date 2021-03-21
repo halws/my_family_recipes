@@ -1,20 +1,36 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:my_family_recipes/providers/basket.dart';
+import 'package:my_family_recipes/providers/history.dart';
 import 'package:provider/provider.dart';
 
 showAlertDialog(BuildContext context) {
   // set up the buttons
   Widget cancelButton = TextButton(
     child: Text("Ні"),
-    onPressed: () => Navigator.pop(context),
+    onPressed: () {
+      print(false);
+      Navigator.pop(context);
+    },
   );
+
+  SnackBar snackBar = completeWithSnackbar(context);
+
   Widget continueButton = TextButton(
     child: Text("Так"),
-    onPressed: () {
+    // TODO disable button when is loading
+    onPressed: () async {
       final basketProvider = Provider.of<Basket>(context, listen: false);
-      basketProvider.items.map((e) => print(jsonEncode(e)));
+      final historyProvider = Provider.of<History>(context, listen: false);
+      try {
+        await historyProvider.saveOrder(basketProvider.items);
+
+        print('saveOrder');
+        basketProvider.removeAll();
+        Navigator.pop(context);
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      } on Exception catch (e) {
+        print(e);
+      }
     },
   );
   // set up the AlertDialog
@@ -33,4 +49,16 @@ showAlertDialog(BuildContext context) {
       return alert;
     },
   );
+}
+
+SnackBar completeWithSnackbar(BuildContext context) {
+  final snackBar = SnackBar(
+    content: Text('Історію записано!'),
+    action: SnackBarAction(
+      label: 'на головну',
+      onPressed: () => Navigator.of(context)
+          .pushNamedAndRemoveUntil('/', (Route<dynamic> route) => false),
+    ),
+  );
+  return snackBar;
 }

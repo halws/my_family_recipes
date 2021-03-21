@@ -75,4 +75,19 @@ class BasketItem {
       "ingredients": ingredients
     };
   }
+
+  factory BasketItem.fromJson(Map<String, dynamic> json) {
+    // transform ingredients
+    var ingredientsListDecoded = json['ingredients'] as List;
+    List<Ingredient> ingredientsList =
+        ingredientsListDecoded.map((e) => Ingredient.fromJson(e)).toList();
+
+    return BasketItem(
+      id: json['id'],
+      name: json['name'],
+      initialPortions: 1,
+      portions: json['portions'],
+      ingredients: ingredientsList,
+    );
+  }
 }

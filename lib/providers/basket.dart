@@ -1,5 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+
 import 'package:my_family_recipes/models/Basket-recipe.dart';
 
 class Basket with ChangeNotifier {
@@ -32,6 +33,7 @@ class Basket with ChangeNotifier {
   /// Removes all items from the cart.
   void removeAll() {
     _items.clear();
+    _totalIgredients.clear();
 
     /// This call tells the widgets that are listening to this model to rebuild.
     notifyListeners();
