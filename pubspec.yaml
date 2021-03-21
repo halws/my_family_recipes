@@ -31,8 +31,10 @@ dependencies:
   decorated_icon: ^1.0.2
   tab_indicator_styler: ^1.0.0
   lipsum: ^1.0.1
+  intl: ^0.17.0
   carousel_slider: ^4.0.0-nullsafety.0
   collection: ^1.15.0
+  sqflite: ^2.0.0+2
 
 dev_dependencies:
   flutter_test:

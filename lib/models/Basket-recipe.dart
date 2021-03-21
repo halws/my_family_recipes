@@ -16,7 +16,7 @@ class SubIngredient extends Ingredient {
 
   void setCheckboxValue(bool value) => checked = value;
 
-  Map toJson() {
+  Map<String, dynamic> toJson() {
     return {
       "totalQuantity": totalQuantity,
       "parentId": parentId,
@@ -63,7 +63,7 @@ class BasketItem {
     });
   }
 
-  Map toJson() {
+  Map<String, dynamic> toJson() {
     List<Map> ingredients = this.ingredients != null
         ? this.ingredients.map((e) => e.toJson()).toList()
         : null;
