@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:my_family_recipes/mixins/ToggleIngredientsVisibilityMixin.dart';
 
 import 'package:my_family_recipes/screens/basket/components/recipes-list.dart';
-import 'package:my_family_recipes/screens/basket/components/linked-label-switch.dart';
 import 'package:my_family_recipes/screens/basket/components/clear-basket-dialog.dart';
 import 'package:my_family_recipes/screens/basket/components/ingredients-list.dart';
-import 'package:my_family_recipes/screens/home/components/appbar-creator.dart';
-
-import 'package:my_family_recipes/widgets/recipe-detail-screen-decorated-icon.dart';
+import 'package:my_family_recipes/screens/basket/components/toggle-ingredients-visibility.dart';
 
 import 'package:my_family_recipes/utils/getColorFromHex.dart';
 
@@ -17,43 +15,17 @@ class BasketScreen extends StatefulWidget {
   _BasketScreenState createState() => _BasketScreenState();
 }
 
-class _BasketScreenState extends State<BasketScreen> {
-  bool isSwitched = true;
-
+class _BasketScreenState extends State<BasketScreen>
+    with ToggleIngredientsVisibility {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ColorUtils.hexToColor('#F8FBFE'),
       appBar: PreferredSize(
         preferredSize: Size(double.infinity, 110),
-        child: AppbarCreator(
-          child: Row(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                  height: double.infinity,
-                  child: IconButton(
-                    onPressed: () => Navigator.pop(context),
-                    icon: GetDecoratedIcon(
-                      icon: Icons.keyboard_arrow_left,
-                      color: ColorUtils.hexToColor('#3A4470'),
-                    ),
-                  ),
-                ),
-                LinkedLabelSwitch(
-                  label:
-                      isSwitched ? 'Поділ на інгредієнти' : 'Поділ на страви',
-                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                  value: isSwitched,
-                  onChanged: (bool newValue) {
-                    setState(() {
-                      isSwitched = newValue;
-                    });
-                  },
-                )
-              ]),
+        child: AppBarWithSwitcher(
+          isSwitched: isSwitched,
+          toggleVisibility: toggleVisibility,
         ),
       ),
       body: SafeArea(
