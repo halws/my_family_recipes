@@ -10,6 +10,7 @@ import 'package:my_family_recipes/providers/recipes.dart';
 import 'package:my_family_recipes/providers/basket.dart';
 
 import 'package:my_family_recipes/screens/home/home_screen.dart';
+import 'package:my_family_recipes/screens/history/history_screen.dart';
 import 'package:my_family_recipes/screens/details/details_screen.dart';
 
 void main() {
@@ -61,6 +62,7 @@ class MyApp extends StatelessWidget {
             '/': (_) => HomeScreen(),
             DetailsScreen.routeName: (_) => DetailsScreen(),
             BasketScreen.routeName: (_) => BasketScreen(),
+            HistoryScreen.routeName: (_) => HistoryScreen(),
           },
         ),
       ),
