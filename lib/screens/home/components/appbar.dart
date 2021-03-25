@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:my_family_recipes/screens/history/history_screen.dart';
+import 'package:my_family_recipes/screens/home/components/simple-account-menu.dart';
 import 'package:my_family_recipes/utils/getColorFromHex.dart';
 
 import 'appbar-creator.dart';
+
+List<Icon> icons = [
+  Icon(Icons.person),
+  Icon(Icons.settings),
+  Icon(Icons.credit_card),
+];
 
 class Appbar extends StatelessWidget {
   const Appbar({
@@ -47,12 +55,24 @@ class Appbar extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15),
-            child: CircleAvatar(
-              radius: 25.0,
-              backgroundImage: NetworkImage(
-                  "https://randomuser.me/api/portraits/men/65.jpg"),
-              backgroundColor: Colors.transparent,
-            ),
+            child: Container(
+                child: SimpleAccountMenu(
+              backgroundColor: ColorUtils.hexToColor('#6D7492'),
+              icons: [
+                Icon(Icons.history),
+              ],
+              iconColor: Colors.white,
+              onChange: (index) {
+                print(index);
+                switch (index) {
+                  case 0:
+                    Navigator.of(context).pushNamed(HistoryScreen.routeName);
+                    break;
+                  default:
+                    return;
+                }
+              },
+            )),
           ),
         ],
       ),
