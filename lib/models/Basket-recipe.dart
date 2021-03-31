@@ -18,9 +18,20 @@ class SubIngredient extends Ingredient {
 
   Map<String, dynamic> toJson() {
     return {
-      "totalQuantity": totalQuantity,
-      "parentId": parentId,
+      "name": name,
+      "category": category,
+      "quantity": quantity,
+      "unit": unit,
     };
+  }
+
+  factory SubIngredient.fromJson(Map<String, dynamic> json) {
+    return SubIngredient(
+      json['name'],
+      json['category'],
+      json['quantity'],
+      json['unit'],
+    );
   }
 }
 
@@ -41,15 +52,15 @@ class BasketItem {
   final String id;
   final String name;
   final int initialPortions;
-  int portions;
   final List<SubIngredient> ingredients;
+  int portions;
 
   BasketItem({
     @required this.id,
     @required this.name,
     @required this.portions,
-    @required this.initialPortions,
     @required this.ingredients,
+    this.initialPortions = 1,
   }) {
     this.changePortions(portions);
   }
@@ -79,13 +90,13 @@ class BasketItem {
   factory BasketItem.fromJson(Map<String, dynamic> json) {
     // transform ingredients
     var ingredientsListDecoded = json['ingredients'] as List;
-    List<Ingredient> ingredientsList =
-        ingredientsListDecoded.map((e) => Ingredient.fromJson(e)).toList();
+
+    List<SubIngredient> ingredientsList =
+        ingredientsListDecoded.map((e) => SubIngredient.fromJson(e)).toList();
 
     return BasketItem(
       id: json['id'],
       name: json['name'],
-      initialPortions: 1,
       portions: json['portions'],
       ingredients: ingredientsList,
     );

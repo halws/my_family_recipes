@@ -10,16 +10,23 @@ class History with ChangeNotifier {
   List<HistoryItem> _items = [];
   List<HistoryItem> get items => [..._items];
 
+  List<BasketItem> parseRecipes(String json) {
+    // final recipes = jsonDecode(json).cast<List<dynamic>>();
+    final recipes = jsonDecode(json) as List;
+    print(recipes.runtimeType);
+
+    return recipes.map<BasketItem>((e) => BasketItem.fromJson(e)).toList();
+  }
+
   Future<void> fetchAndSetOrders() async {
     final dataList = await DBHelper.getData('orders');
-
+    print(dataList);
     try {
       _items = dataList.map((jsonItem) {
         // transform recipes
-        var recipesListDecoded = jsonItem['recipes'] as List;
-        List<BasketItem> recipesList = recipesListDecoded
-            .map((jsonBasketItem) => jsonBasketItem.fromJson(jsonBasketItem))
-            .toList();
+        print(jsonDecode(jsonItem['recipes']));
+
+        var recipesList = parseRecipes(jsonItem['recipes']);
 
         return HistoryItem(
           jsonItem['id'],
@@ -29,6 +36,7 @@ class History with ChangeNotifier {
       }).toList();
 
       notifyListeners();
+      print(_items);
     } on Exception catch (e) {
       // TODO
       print(e);

@@ -15,7 +15,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  var _isInit = true;
+  bool _isInit = true;
 
   @override
   void didChangeDependencies() {
