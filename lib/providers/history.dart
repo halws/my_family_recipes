@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:my_family_recipes/models/Basket-recipe.dart';
@@ -6,39 +7,46 @@ import 'dart:convert';
 import 'package:my_family_recipes/models/History.dart';
 import 'package:my_family_recipes/utils/db_helper.dart';
 
+List<HistoryItem> parseRecipes(List<Map<String, dynamic>> dataList) {
+  // final recipes = jsonDecode(json).cast<List<dynamic>>();
+
+  return dataList.map((jsonItem) {
+    // transform recipes
+    // print(jsonDecode(jsonItem['recipes']));
+    // print(recipes.runtimeType);
+
+    final recipes = jsonDecode(jsonItem['recipes']) as List;
+    List<BasketItem> recipesList =
+        recipes.map<BasketItem>((e) => BasketItem.fromJson(e)).toList();
+
+    return HistoryItem(
+      jsonItem['id'],
+      jsonItem['date'],
+      recipesList,
+    );
+  }).toList();
+}
+
 class History with ChangeNotifier {
   List<HistoryItem> _items = [];
   List<HistoryItem> get items => [..._items];
 
-  List<BasketItem> parseRecipes(String json) {
-    // final recipes = jsonDecode(json).cast<List<dynamic>>();
-    final recipes = jsonDecode(json) as List;
-    print(recipes.runtimeType);
+  Future<List<HistoryItem>> _fetchOrders() async {
+    final dbResponse = await DBHelper.getData('orders');
 
-    return recipes.map<BasketItem>((e) => BasketItem.fromJson(e)).toList();
+    /// Use the compute function to run parseRecipes in a separate isolate.
+    return compute(parseRecipes, dbResponse);
   }
 
-  Future<void> fetchAndSetOrders() async {
-    final dataList = await DBHelper.getData('orders');
-    print(dataList);
+  Future<void> setOrders() async {
     try {
-      _items = dataList.map((jsonItem) {
-        // transform recipes
-        print(jsonDecode(jsonItem['recipes']));
-
-        var recipesList = parseRecipes(jsonItem['recipes']);
-
-        return HistoryItem(
-          jsonItem['id'],
-          jsonItem['date'],
-          recipesList,
-        );
-      }).toList();
-
+      print("_fetchOrders()");
+      _items = await _fetchOrders();
       notifyListeners();
       print(_items);
     } on Exception catch (e) {
       // TODO
+      print('Exception catch');
       print(e);
     }
   }
