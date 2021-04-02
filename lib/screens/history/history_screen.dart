@@ -37,51 +37,55 @@ class _HistoryScreenState extends State<HistoryScreen> {
         preferredSize: Size(double.infinity, 110),
         child: AppBarWithoutSwitcher(),
       ),
-      body: SafeArea(
-        child: Container(
-          padding: const EdgeInsets.all(20),
-          decoration: BoxDecoration(
-            color: ColorUtils.hexToColor('#F3F5F9'),
-          ),
-          child: _isLoading
-              ? Center(
-                  child: CircularProgressIndicator(),
-                )
-              : Consumer<History>(
-                  builder: (context, provider, child) => ListView.builder(
-                    itemCount: provider.items.length,
-                    itemBuilder: (context, index) {
-                      return Container(
-                        decoration: BoxDecoration(
-                          boxShadow: [
-                            BoxShadow(
-                                color: ColorUtils.hexToColor('#DADCE0'),
-                                blurRadius: 15.0,
-                                offset: Offset(0.0, 0.75))
-                          ],
-                          color: ColorUtils.hexToColor('#F3F5F9'),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Material(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(10),
-                          child: InkWell(
+      body: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 30),
+        child: SafeArea(
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            decoration: BoxDecoration(
+              color: ColorUtils.hexToColor('#F3F5F9'),
+            ),
+            child: _isLoading
+                ? Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : Consumer<History>(
+                    builder: (context, provider, child) => ListView.builder(
+                      itemCount: provider.items.length,
+                      itemBuilder: (context, index) {
+                        return Container(
+                          margin: const EdgeInsets.only(bottom: 15),
+                          decoration: BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                  color: ColorUtils.hexToColor('#DADCE0'),
+                                  blurRadius: 15.0,
+                                  offset: Offset(0.0, 0.75))
+                            ],
+                            color: ColorUtils.hexToColor('#F3F5F9'),
                             borderRadius: BorderRadius.circular(10),
-                            splashColor: Theme.of(context).primaryColor,
-                            onTap: () {
-                              print(null);
-                            },
-                            child: ListTile(
-                              title: Text(
-                                  'Кількість Рецептів ${provider.items[index].recipes.length}'),
-                              subtitle: Text('${provider.items[index].date}'),
+                          ),
+                          child: Material(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                            child: InkWell(
+                              borderRadius: BorderRadius.circular(10),
+                              splashColor: Theme.of(context).primaryColor,
+                              onTap: () {
+                                print(null);
+                              },
+                              child: ListTile(
+                                title: Text(
+                                    '#${index + 1}  Рецептів -${provider.items[index].recipes.length}'),
+                                subtitle: Text('${provider.items[index].date}'),
+                              ),
                             ),
                           ),
-                        ),
-                      );
-                    },
+                        );
+                      },
+                    ),
                   ),
-                ),
+          ),
         ),
       ),
     );
