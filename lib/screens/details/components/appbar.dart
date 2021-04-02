@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:my_family_recipes/models/Recipe.dart';
-import 'package:my_family_recipes/models/Basket-recipe.dart';
+import 'package:my_family_recipes/models/Basket_recipe.dart';
 
 import 'package:my_family_recipes/providers/basket.dart';
 
 import 'package:my_family_recipes/screens/basket/basket_screen.dart';
 
-import 'package:my_family_recipes/widgets/recipe-detail-screen-decorated-icon.dart';
+import 'package:my_family_recipes/widgets/recipe_detail_screen_decorated_icon.dart';
 
 class Appbar extends StatelessWidget {
   const Appbar({

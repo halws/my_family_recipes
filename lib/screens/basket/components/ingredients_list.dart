@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:my_family_recipes/screens/basket/components/recipe-ingredients.dart';
+import 'package:my_family_recipes/screens/basket/components/recipe_ingredients.dart';
 import 'package:my_family_recipes/providers/basket.dart';
 
 class IngredientsList extends StatefulWidget {

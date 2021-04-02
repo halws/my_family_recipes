@@ -4,7 +4,7 @@ import 'package:my_family_recipes/screens/basket/basket_screen.dart';
 import 'package:my_family_recipes/screens/home/components/appbar.dart';
 import 'package:my_family_recipes/screens/home/components/body.dart';
 
-import 'package:my_family_recipes/utils/getColorFromHex.dart';
+import 'package:my_family_recipes/utils/get_color_from_hex.dart';
 import 'package:provider/provider.dart';
 
 import 'package:my_family_recipes/providers/recipes.dart';

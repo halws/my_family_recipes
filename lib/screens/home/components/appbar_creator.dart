@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_family_recipes/utils/getColorFromHex.dart';
+import 'package:my_family_recipes/utils/get_color_from_hex.dart';
 
 class AppbarCreator extends StatelessWidget {
   final Widget child;

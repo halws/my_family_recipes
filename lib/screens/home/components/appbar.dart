@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:my_family_recipes/screens/history/history_screen.dart';
-import 'package:my_family_recipes/screens/home/components/simple-account-menu.dart';
-import 'package:my_family_recipes/utils/getColorFromHex.dart';
+import 'package:my_family_recipes/screens/home/components/simple_account_menu.dart';
+import 'package:my_family_recipes/utils/get_color_from_hex.dart';
 
-import 'appbar-creator.dart';
+import 'appbar_creator.dart';
 
 List<Icon> icons = [
   Icon(Icons.person),

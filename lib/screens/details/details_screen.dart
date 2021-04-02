@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:my_family_recipes/screens/details/components/appbar.dart';
-import 'package:my_family_recipes/screens/details/components/body-list.dart';
+import 'package:my_family_recipes/screens/details/components/body_list.dart';
 import 'package:my_family_recipes/screens/details/components/body.dart';
 
 import 'package:my_family_recipes/models/Recipe.dart';

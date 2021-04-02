@@ -1,4 +1,4 @@
-import 'package:my_family_recipes/models/Basket-recipe.dart';
+import 'package:my_family_recipes/models/Basket_recipe.dart';
 
 class HistoryItem {
   final String id;

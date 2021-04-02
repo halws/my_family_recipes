@@ -3,7 +3,7 @@ import 'package:my_family_recipes/models/Recipe.dart';
 import 'package:tab_indicator_styler/tab_indicator_styler.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
-import 'package:my_family_recipes/utils/getColorFromHex.dart';
+import 'package:my_family_recipes/utils/get_color_from_hex.dart';
 
 class RecipeTabs extends StatelessWidget {
   final List<Ingredient> ingredients;

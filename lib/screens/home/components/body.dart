@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:my_family_recipes/screens/details/details_screen.dart';
-import 'package:my_family_recipes/utils/getColorFromHex.dart';
+import 'package:my_family_recipes/utils/get_color_from_hex.dart';
 
 class Body extends StatelessWidget {
   final List items;

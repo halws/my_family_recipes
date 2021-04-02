@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:my_family_recipes/screens/basket/components/linked-label-switch.dart';
-import 'package:my_family_recipes/screens/home/components/appbar-creator.dart';
-import 'package:my_family_recipes/utils/getColorFromHex.dart';
-import 'package:my_family_recipes/widgets/recipe-detail-screen-decorated-icon.dart';
+import 'package:my_family_recipes/screens/basket/components/linked_label-switch.dart';
+import 'package:my_family_recipes/screens/home/components/appbar_creator.dart';
+import 'package:my_family_recipes/utils/get_color_from_hex.dart';
+import 'package:my_family_recipes/widgets/recipe_detail_screen_decorated_icon.dart';
 
 class AppBarWithSwitcher extends StatelessWidget {
   const AppBarWithSwitcher({

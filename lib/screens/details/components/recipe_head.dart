@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_family_recipes/models/Recipe.dart';
-import 'package:my_family_recipes/utils/getColorFromHex.dart';
-import 'package:my_family_recipes/utils/getTime.dart';
+import 'package:my_family_recipes/utils/get_color_from_hex.dart';
+import 'package:my_family_recipes/utils/get_time.dart';
 
 class RecipeHead extends StatelessWidget {
   final Recipe recipe;

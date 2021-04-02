@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:my_family_recipes/models/Basket-recipe.dart';
+import 'package:my_family_recipes/models/Basket_recipe.dart';
 import 'package:my_family_recipes/providers/basket.dart';
-import 'package:my_family_recipes/screens/basket/components/labeled-checkbox.dart';
-import 'package:my_family_recipes/utils/getColorFromHex.dart';
+import 'package:my_family_recipes/screens/basket/components/labeled_checkbox.dart';
+import 'package:my_family_recipes/utils/get_color_from_hex.dart';
 
 /// Show list of ingredinets on grey background
 class RecipeIngredients extends StatelessWidget {

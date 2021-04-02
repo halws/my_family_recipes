@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:my_family_recipes/screens/details/components/recipe-head.dart';
-import 'package:my_family_recipes/screens/details/components/recipe-tabs.dart';
+import 'package:my_family_recipes/screens/details/components/recipe_head.dart';
+import 'package:my_family_recipes/screens/details/components/recipe_tabs.dart';
 import 'package:my_family_recipes/models/Recipe.dart';
 
 class BodyList extends StatelessWidget {

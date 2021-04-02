@@ -1,7 +1,7 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 
-import 'package:my_family_recipes/models/Basket-recipe.dart';
+import 'package:my_family_recipes/models/Basket_recipe.dart';
 
 class Basket with ChangeNotifier {
   /// TODO write all items to storage

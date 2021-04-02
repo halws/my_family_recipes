@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_family_recipes/providers/history.dart';
-import 'package:my_family_recipes/utils/getColorFromHex.dart';
-import 'package:my_family_recipes/widgets/AppbarWithoutSwither.dart';
+import 'package:my_family_recipes/utils/get_color_from_hex.dart';
+import 'package:my_family_recipes/widgets/app_bar_without_swither.dart';
 import 'package:provider/provider.dart';
 
 class HistoryScreen extends StatefulWidget {
