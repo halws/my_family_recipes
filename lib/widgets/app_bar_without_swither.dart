@@ -6,7 +6,10 @@ import 'package:my_family_recipes/widgets/recipe_detail_screen_decorated_icon.da
 class AppBarWithoutSwitcher extends StatelessWidget {
   const AppBarWithoutSwitcher({
     Key key,
+    this.child,
   }) : super(key: key);
+
+  final Widget child;
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +29,7 @@ class AppBarWithoutSwitcher extends StatelessWidget {
                 ),
               ),
             ),
+            child != null ? child : Container()
           ]),
     );
   }
