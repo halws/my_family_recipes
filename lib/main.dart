@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:my_family_recipes/providers/history.dart';
 import 'package:my_family_recipes/screens/basket/basket_screen.dart';
+import 'package:my_family_recipes/screens/history/History_item_screen.dart';
 import 'package:provider/provider.dart';
 
 import 'package:my_family_recipes/utils/get_color_from_hex.dart';
@@ -63,6 +64,7 @@ class MyApp extends StatelessWidget {
             DetailsScreen.routeName: (_) => DetailsScreen(),
             BasketScreen.routeName: (_) => BasketScreen(),
             HistoryScreen.routeName: (_) => HistoryScreen(),
+            HistoryItemScreen.routeName: (_) => HistoryItemScreen(),
           },
         ),
       ),

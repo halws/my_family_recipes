@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_family_recipes/providers/history.dart';
+import 'package:my_family_recipes/screens/history/History_item_screen.dart';
 import 'package:my_family_recipes/utils/get_color_from_hex.dart';
 import 'package:my_family_recipes/widgets/app_bar_without_swither.dart';
 import 'package:provider/provider.dart';
@@ -27,6 +28,11 @@ class _HistoryScreenState extends State<HistoryScreen> {
 
     _isInit = false;
     super.didChangeDependencies();
+  }
+
+  selectHistoryItem(String id) {
+    print(id);
+    Navigator.of(context).pushNamed(HistoryItemScreen.routeName, arguments: id);
   }
 
   @override
@@ -72,7 +78,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                               borderRadius: BorderRadius.circular(10),
                               splashColor: Theme.of(context).primaryColor,
                               onTap: () {
-                                print(null);
+                                selectHistoryItem(provider.items[index].id);
                               },
                               child: ListTile(
                                 title: Text(

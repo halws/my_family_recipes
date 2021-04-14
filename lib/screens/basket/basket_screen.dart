@@ -36,7 +36,6 @@ class _BasketScreenState extends State<BasketScreen>
           )
         ],
       )),
-      // TODO show this button only when there are few elements in the list
       floatingActionButton: FloatingActionButton(
         onPressed: () => showAlertDialog(context),
         child: Icon(Icons.assignment_turned_in),
