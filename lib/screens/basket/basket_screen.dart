@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:my_family_recipes/mixins/toggle_Ingredients_visibility_mixin.dart';
 
+import 'package:my_family_recipes/mixins/toggle_Ingredients_visibility_mixin.dart';
+import 'package:my_family_recipes/utils/get_color_from_hex.dart';
+
+import 'package:my_family_recipes/screens/basket/components/app_bar_with_swither.dart';
 import 'package:my_family_recipes/screens/basket/components/recipes_list.dart';
 import 'package:my_family_recipes/screens/basket/components/clear_basket_dialog.dart';
 import 'package:my_family_recipes/screens/basket/components/ingredients_list.dart';
-import 'package:my_family_recipes/screens/basket/components/toggle_ingredients_visibility.dart';
-
-import 'package:my_family_recipes/utils/get_color_from_hex.dart';
 
 class BasketScreen extends StatefulWidget {
   static const routeName = 'basket-screen';
