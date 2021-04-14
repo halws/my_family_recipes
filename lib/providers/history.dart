@@ -1,10 +1,12 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:my_family_recipes/models/Basket_recipe.dart';
+import 'package:uuid/uuid.dart';
 import 'dart:convert';
 
+import 'package:my_family_recipes/models/Basket_recipe.dart';
 import 'package:my_family_recipes/models/History.dart';
+
 import 'package:my_family_recipes/utils/db_helper.dart';
 
 List<HistoryItem> parseRecipes(List<Map<String, dynamic>> dataList) {
@@ -53,11 +55,12 @@ class History with ChangeNotifier {
 
   Future<void> saveOrder(List<BasketItem> items) async {
     var dt = DateTime.now();
+    final uuid = Uuid();
     var newFormat = DateFormat("dd-MM-yy");
     String updatedDt = newFormat.format(dt);
 
     var data = {
-      'id': dt.toString(),
+      'id': uuid.v1(),
       'date': updatedDt,
       'recipes': jsonEncode(items),
     };
