@@ -5,6 +5,7 @@ import 'package:my_family_recipes/models/History.dart';
 import 'package:my_family_recipes/providers/history.dart';
 import 'package:my_family_recipes/utils/get_color_from_hex.dart';
 import 'package:my_family_recipes/widgets/app_bar_without_swither.dart';
+import 'package:my_family_recipes/screens/details/details_screen.dart';
 
 class HistoryItemScreen extends StatefulWidget {
   static const routeName = 'history-item-screen';
@@ -59,14 +60,26 @@ class _HistoryItemScreenState extends State<HistoryItemScreen> {
                               vertical: 5.0,
                               horizontal: 15.0,
                             ),
-                            child: Align(
-                              alignment: AlignmentDirectional.centerStart,
-                              // RESIPE  TITLE
-                              child: Text(
-                                recipesHistory.recipes[index].name,
-                                textAlign: TextAlign.right,
-                                style: Theme.of(context).textTheme.headline1,
-                              ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  recipesHistory.recipes[index].name,
+                                  textAlign: TextAlign.right,
+                                  style: Theme.of(context).textTheme.headline1,
+                                ),
+                                IconButton(
+                                  icon: Icon(Icons.link),
+                                  color: ColorUtils.hexToColor('#3a4470'),
+                                  tooltip: 'Increase volume by 10',
+                                  onPressed: () {
+                                    Navigator.of(context).pushNamed(
+                                        DetailsScreen.routeName,
+                                        arguments:
+                                            recipesHistory.recipes[index].id);
+                                  },
+                                )
+                              ],
                             ),
                           ),
                           Container(
